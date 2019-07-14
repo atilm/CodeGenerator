@@ -14,7 +14,7 @@ namespace CodeGenerator.Services
             IProjectFileWriter fileWriter)
             : base(templateReader, fileWriter)
         {
-            TargetFolderPath = config.Value.AppProjectPath;
+            TargetFolderPath = AppSettings.ToFullPath(config.Value.AppProjectPath);
         }
 
         public void Generate(IEnumerable<ClassDefinition> classDefinitions)

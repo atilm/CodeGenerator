@@ -13,7 +13,7 @@ namespace CodeGenerator.Services
             IProjectFileWriter fileWriter)
         : base(templateReader, fileWriter)
         {
-            TargetFolderPath = config.Value.ViewModelTargetFolderPath;
+            TargetFolderPath = AppSettings.ToFullPath(config.Value.ViewModelTargetFolderPath);
         }
 
         public void Generate(IEnumerable<ClassDefinition> classDefinitions)

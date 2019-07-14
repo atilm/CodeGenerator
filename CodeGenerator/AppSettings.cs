@@ -1,4 +1,6 @@
-﻿namespace CodeGenerator
+﻿using System.IO;
+
+namespace CodeGenerator
 {
     public class AppSettings
     {
@@ -9,5 +11,11 @@
         public string ServiceTargetFolderPath { get; set; }
         public string MapTargetFolderPath { get; set; }
         public string AppProjectPath { get; set; }
+
+        public static string ToFullPath(string relativePath)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            return Path.Join(currentDirectory, relativePath);
+        }
     }
 }

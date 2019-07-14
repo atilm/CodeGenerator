@@ -17,7 +17,7 @@ namespace CodeGenerator.Services
 
         public DomainModelReader(IOptions<AppSettings> config, ITypeToStringConverter typeToStringConverter)
         {
-            m_assembly = Assembly.LoadFile(config.Value.DomainModelDllPath);
+            m_assembly = Assembly.LoadFile(AppSettings.ToFullPath(config.Value.DomainModelDllPath));
 
             this.typeToStringConverter = typeToStringConverter;
         }

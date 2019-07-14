@@ -11,7 +11,7 @@ namespace CodeGenerator.Services
 
         public TemplateFileReader(IOptions<AppSettings> config)
         {
-            templateFolderPath = config.Value.TemplateFolderPath;
+            templateFolderPath = AppSettings.ToFullPath(config.Value.TemplateFolderPath);
         }
 
         public Template Read(string fileName)
