@@ -1,0 +1,18 @@
+﻿using System.Collections.Generic;
+using Models;
+using ViewModels;
+
+namespace Maps
+{
+    public interface I[[DomainObjectName]]Map
+    {
+        [[DomainObjectName]]ViewModel Create([[DomainObjectName]]ViewModel viewModel);
+        bool Update([[DomainObjectName]]ViewModel viewModel);
+        bool Delete(uint id);
+        List<[[DomainObjectName]]ViewModel> GetAll();
+        [[DomainObjectName]]ViewModel Get(uint id);
+        [[DomainObjectName]]ViewModel DomainToViewModel([[DomainObjectName]] domain);
+        List<[[DomainObjectName]]ViewModel> DomainToViewModel(List<[[DomainObjectName]]> domain);
+        [[DomainObjectName]] ViewModelToDomain([[DomainObjectName]]ViewModel viewModel);
+    }
+}

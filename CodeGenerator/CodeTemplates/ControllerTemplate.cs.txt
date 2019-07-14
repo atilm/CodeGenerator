@@ -1,0 +1,71 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Maps;
+using Microsoft.AspNetCore.Mvc;
+using ViewModels;
+
+namespace WebApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class [[DomainObjectName]]Controller : ControllerBase
+    {
+        private readonly I[[DomainObjectName]]Map ObjectMap;
+
+        public [[DomainObjectName]]Controller(I[[DomainObjectName]]Map objectMap)
+        {
+            ObjectMap = objectMap;
+        }
+
+        // GET: api/Item
+        [HttpGet]
+        public async Task<ActionResult<IList<[[DomainObjectName]]ViewModel>>> Get()
+        {
+            return Ok(ObjectMap.GetAll());
+        }
+
+        // GET: api/Item/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<[[DomainObjectName]]ViewModel>> Get(uint id)
+        {
+            var viewModel = ObjectMap.Get(id);
+
+            if (viewModel != null)
+                return viewModel;
+
+            return NotFound();
+        }
+
+        // POST: api/Item
+        [HttpPost]
+        public async Task<ActionResult<[[DomainObjectName]]ViewModel>> Post([[DomainObjectName]]ViewModel postedViewModel)
+        {
+            var viewModel = ObjectMap.Create(postedViewModel);
+
+            return CreatedAtAction(nameof(Get), new {id = viewModel.Id}, viewModel);
+        }
+
+        // PUT: api/Item/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(uint id, [[DomainObjectName]]ViewModel viewModel)
+        {
+            if (viewModel.Id != id)
+                return BadRequest();
+
+            ObjectMap.Update(viewModel);
+
+            return NoContent();
+        }
+
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(uint id)
+        {
+            if (ObjectMap.Get(id) == null)
+                return NotFound();
+
+            ObjectMap.Delete(id);
+            return NoContent();
+        }
+    }
+}

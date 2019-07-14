@@ -1,0 +1,14 @@
+﻿using System.Collections.Generic;
+using Models;
+
+namespace Services
+{
+    public interface I[[DomainObjectName]]Service
+    {
+        [[DomainObjectName]] Save([[DomainObjectName]] domainObject);
+        bool Update([[DomainObjectName]] domainObject);
+        bool Delete(uint id);
+        List<[[DomainObjectName]]> GetAll();
+        [[DomainObjectName]] GetById(uint index);
+    }
+}

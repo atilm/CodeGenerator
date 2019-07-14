@@ -1,0 +1,83 @@
+﻿using Services;
+using System.Collections.Generic;
+using Models;
+using ViewModels;
+
+namespace Maps
+{
+    public class [[DomainObjectName]]Map : I[[DomainObjectName]]Map
+    {
+        I[[DomainObjectName]]Service service;
+
+        public [[DomainObjectName]]Map(I[[DomainObjectName]]Service service)
+        {
+            this.service = service;
+        }
+
+        public [[DomainObjectName]]ViewModel Create([[DomainObjectName]]ViewModel viewModel)
+
+        {
+            [[DomainObjectName]] pollQuestion = ViewModelToDomain(viewModel);
+
+            return DomainToViewModel(service.Save(pollQuestion));
+
+        }
+
+        public bool Update([[DomainObjectName]]ViewModel viewModel)
+        {
+            var pollQuestion = ViewModelToDomain(viewModel);
+
+            return service.Update(pollQuestion);
+
+        }
+
+        public bool Delete(uint id)
+        {
+            return service.Delete(id);
+        }
+
+        public List<[[DomainObjectName]]ViewModel> GetAll()
+        {
+            return DomainToViewModel(service.GetAll());
+        }
+
+        public [[DomainObjectName]]ViewModel Get(uint id)
+        {
+            return DomainToViewModel(service.GetById(id));
+        }
+
+        public [[DomainObjectName]]ViewModel DomainToViewModel([[DomainObjectName]] domain)
+        {
+            if (domain == null)
+                return null;
+
+            var viewModel = new [[DomainObjectName]]ViewModel();
+
+			[[DomainToViewModelMappings]]
+
+            return viewModel;
+        }
+
+        public List<[[DomainObjectName]]ViewModel> DomainToViewModel(List<[[DomainObjectName]]> domain)
+        {
+            List<[[DomainObjectName]]ViewModel> model = new List<[[DomainObjectName]]ViewModel>();
+
+            foreach (var domainObject in domain)
+            {
+                model.Add(DomainToViewModel(domainObject));
+            }
+
+            return model;
+        }
+
+        public [[DomainObjectName]] ViewModelToDomain([[DomainObjectName]]ViewModel viewModel)
+        {
+            var domain = new [[DomainObjectName]]();
+
+			[[ViewModelToDomainMappings]]
+
+            return domain;
+        }
+
+    }
+}
