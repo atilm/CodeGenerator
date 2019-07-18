@@ -82,6 +82,8 @@ namespace CodeGenerator
                 .Configure<AppSettings>(configuration.GetSection("Configuration"))
                 .AddSingleton<ILogger, ConsoleLogger>()
                 .AddTransient<IProjectInitializer, ProjectInitializer>()
+                .AddTransient<IDotNetCoreSolutionCreator, DotNetCoreSolutionCreator>()
+                .AddTransient<IDotNetCli, DotNetCli>()
                 .AddTransient<IDomainModelReader, DomainModelReader>()
                 .AddTransient<ITemplateFileReader, TemplateFileReader>()
                 .AddTransient<IProjectFileWriter, ProjectFileWriter>()

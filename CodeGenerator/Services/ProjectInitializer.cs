@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using CodeGenerator.Interfaces;
 
@@ -21,8 +22,17 @@ namespace CodeGenerator.Services
         {
             InitPaths();
 
+            logger.LogInfo("Initializing project.");
+
+            GenerateSolution();
+
             CopyConfigFile();
             CopyTemplates();
+        }
+
+        private void GenerateSolution()
+        {
+            
         }
 
         private void CopyConfigFile()
