@@ -3,7 +3,7 @@ using CodeGenerator.Entities;
 
 namespace CodeGenerator.Interfaces
 {
-    internal interface ICodeGenerator
+    public interface ICodeGenerator
     {
         void Generate(IEnumerable<ClassDefinition> classDefinitions);
     }
